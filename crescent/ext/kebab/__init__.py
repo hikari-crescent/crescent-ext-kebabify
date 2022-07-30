@@ -1,9 +1,11 @@
 from __future__ import annotations
 
-from crescent.internal import Includable, AppCommandMeta
-
+import typing
 import string
 import itertools
+
+if typing.TYPE_CHECKING:
+    from crescent.internal import Includable, AppCommandMeta
 
 def _split_pascal_case(s: str) -> list[str]:
     word_breaks: list[int] = []
