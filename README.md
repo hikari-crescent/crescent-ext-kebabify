@@ -1,4 +1,4 @@
-# crescent-ext-kebeb
+# crescent-ext-kebab
 
 Turn your command names into kebabs.
 
