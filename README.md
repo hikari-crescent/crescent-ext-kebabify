@@ -14,7 +14,7 @@ bot = crescent.Bot("TOKEN")
 @bot.include
 @kebab.ify
 @crescent.command
-class MyClassCommand():
+class MyClassCommand:
     def callback(self, ctx: crescent.Context):
         ...
 
