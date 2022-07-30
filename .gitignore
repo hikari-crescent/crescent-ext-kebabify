@@ -1,0 +1,11 @@
+test.py
+
+# ide
+.vscode
+.idea
+
+# Python
+.venv/*
+dist/*
+__pycache__/*
+*.pyc

@@ -1,0 +1,19 @@
+[tool.poetry]
+authors = ["Lunarmagpie <Bambolambo0@gmail.com>"]
+description = "Turn your command names into kebabs."
+license = "MPL-2.0"
+name = "crescent-ext-kebabify"
+packages = [
+  {include = "crescent/ext/kebab"},
+]
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+hikari-crescent = {git = "https://github.com/magpie-dev/hikari-crescent.git", branch="main"}
+python = ">=3.8,<3.11"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]
