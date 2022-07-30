@@ -1,6 +1,6 @@
 # crescent-ext-kebeb
 
-Turns your command names into kebabs.
+Turn your command names into kebabs.
 
 ```python
 
