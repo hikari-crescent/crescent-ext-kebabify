@@ -13,19 +13,14 @@ if typing.TYPE_CHECKING:
 
 
 def _split_pascal_case(s: str) -> list[str]:
-    word_breaks: list[int] = []
+    words = []
+    last = 0
+    for c, char in enumerate(s):
+        if c and char.isupper():
+            words.append(s[last:c])
+            last = c
 
-    for index, (maybe_lower, maybe_upper) in enumerate(pairwise(s)):
-        if maybe_lower.islower() and maybe_upper.isupper():
-            word_breaks.append(index + 1)
-
-    if not word_breaks:
-        return [s]
-
-    words: list[str] = []
-    for start, end in pairwise([0, *word_breaks, len(s)]):
-        words.append(s[start:end])
-
+    words.append(s[last:])
     return words
 
 
