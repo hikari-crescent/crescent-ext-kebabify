@@ -45,6 +45,9 @@ def split_words(
     if not override:
         split_functions.extend([_split_snake_case, _split_pascal_case])
 
+    if not split_functions:
+        return [s]
+
     words = split_functions[0](s)
 
     def apply_split(words: list[str], func: SPLIT_TYPE) -> list[str]:
