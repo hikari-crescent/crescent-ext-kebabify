@@ -1,8 +1,11 @@
 from __future__ import annotations
+from functools import partial
 
 from itertools import pairwise
 
 import typing
+
+SPLIT_TYPE: typing.TypeAlias = typing.Callable[[str], list[str]]
 
 
 if typing.TYPE_CHECKING:
@@ -27,21 +30,56 @@ def _split_pascal_case(s: str) -> list[str]:
 
 
 def _split_snake_case(s: str) -> list[str]:
-
-    words = _split_pascal_case(s)
-
-    out = []
-    for word in words:
-        out += word.split("_")
-
-    return out
+    return s.split("_")
 
 
-def ify_string(s: str) -> str:
-    return "-".join(_split_snake_case(s)).lower()
+def split_words(
+    s: str,
+    *,
+    split_functions: list[SPLIT_TYPE] | None = None,
+    override: bool = False,
+) -> list[str]:
+    if not split_functions:
+        split_functions = []
+
+    if not override:
+        split_functions.extend([_split_snake_case, _split_pascal_case])
+
+    words = split_functions[0](s)
+
+    def apply_split(words: list[str], func: SPLIT_TYPE) -> list[str]:
+        out: list[str] = []
+        for word in words:
+            out.extend(func(word))
+        return out
+
+    for func in split_functions[1:]:
+        words = apply_split(words, func)
+
+    return words
 
 
-def ify(includable: Includable[AppCommandMeta]) -> Includable[AppCommandMeta]:
+def ify_string(
+    s: str, *, split_functions: list[SPLIT_TYPE] = None, override: bool = False
+) -> str:
+    return "-".join(
+        split_words(s, split_functions=split_functions, override=override)
+    ).lower()
+
+
+def ify(
+    split_functions: list[SPLIT_TYPE],
+    override: bool = False,
+    includable: Includable[AppCommandMeta] | None = None
+) -> Includable[AppCommandMeta]:
+    if not includable:
+        # honestly do not give enough of a shit to fix this
+        return partial(
+            ify,
+            split_functions=split_functions,
+            override=override,
+        )  # type: ignore
+
     includable.metadata.app_command.name = ify_string(
         includable.metadata.app_command.name
     )
