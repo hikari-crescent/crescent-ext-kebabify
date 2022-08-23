@@ -1,8 +1,6 @@
 from __future__ import annotations
 from functools import partial
 
-from itertools import pairwise
-
 import typing
 
 SPLIT_TYPE: typing.TypeAlias = typing.Callable[[str], list[str]]
