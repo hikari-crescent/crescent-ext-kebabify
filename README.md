@@ -2,6 +2,13 @@
 
 Turn your command names into kebabs.
 
+
+## Installing
+`pip install crescent-ext-kebabify`
+
+
+## Example
+
 ```python
 
 import crescent
@@ -26,9 +33,6 @@ class MyClassCommand:
 async def my_function_commannd(ctx: crescent.Context):
     ...
 
+bot.run()
+
 ```
-
-## Installing
-requires current git version of crescent
-
-install this library from git
