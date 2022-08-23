@@ -6,7 +6,12 @@ name = "crescent-ext-kebabify"
 packages = [
   {include = "crescent/ext/kebab"},
 ]
+readme = "README.md"
+repository = "https://github.com/Lunarmagpie/crescent-ext-kebabify"
 version = "0.1.0"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/Lunarmagpie/crescent-ext-kebabify/issues"
 
 [tool.poetry.dependencies]
 hikari-crescent = "^0.3.0"
