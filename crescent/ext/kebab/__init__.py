@@ -76,8 +76,6 @@ def ify(
             override=override,
         )  # type: ignore
 
-    print("doing stuff")
-
     includable.metadata.app_command.name = ify_string(
         includable.metadata.app_command.name
     )
