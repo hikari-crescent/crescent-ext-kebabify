@@ -14,8 +14,8 @@ version = "0.1.0"
 "Bug Tracker" = "https://github.com/Lunarmagpie/crescent-ext-kebabify/issues"
 
 [tool.poetry.dependencies]
-hikari-crescent = "^0.3.0"
-python = ">=3.8,<3.11"
+hikari-crescent = "^0.5.0"
+python = ">=3.8,<3.12"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^22.6.0", allow-prereleases = true}
