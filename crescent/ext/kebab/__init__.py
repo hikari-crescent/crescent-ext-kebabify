@@ -64,9 +64,9 @@ def ify_string(
 
 
 def ify(
-    split_functions: list[SPLIT_TYPE],
+    includable: Includable[AppCommandMeta] | None = None,
+    split_functions: list[SPLIT_TYPE] = [],
     override: bool = False,
-    includable: Includable[AppCommandMeta] | None = None
 ) -> Includable[AppCommandMeta]:
     if not includable:
         # honestly do not give enough of a shit to fix this
@@ -76,7 +76,13 @@ def ify(
             override=override,
         )  # type: ignore
 
+    print("doing stuff")
+
     includable.metadata.app_command.name = ify_string(
         includable.metadata.app_command.name
     )
+
+    for option in includable.metadata.app_command.options:
+        option.name = ify_string(option.name)
+
     return includable
